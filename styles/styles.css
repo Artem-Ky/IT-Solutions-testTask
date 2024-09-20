@@ -1,0 +1,1730 @@
+@font-face {
+    font-family: 'Inter';
+    src: url('../fonts/Inter-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Inter';
+    src: url('../fonts/Inter-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Inter';
+    src: url('../fonts/Inter-Black.woff2') format('woff2');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+ :root {
+    --color-black: #191919;
+    --color-black-alt: #303030;
+    --color-white: #ffffff;
+    --color-white-alt: #F3F3F3;
+    --color-white-dark: #F8F8F8;
+    --color-gray-light: #B8B8B8;
+    --color-gray-alt: #d3d3d3;
+    --color-gray: #757575;
+    --color-gray-border: #3B3B3B;
+    --color-gray-dark: #888888;
+    --color-red: #EB1C24;
+    --color-red-alt: #D90008;
+    --color-yellow: #FFCC02;
+    --color-empty-star: #E6E6E6;
+    --color-blue: #1673FE;
+
+    --checkbox-border-color: #C4C4C4;
+
+    --border-radius-xxs: 8px;
+    --border-radius-xs: 10px;
+    --border-radius-s: 12px;
+    --border-radius-m: 16px;
+    --border-radius-l: 20px;
+    --border-radius-xl: 40px;
+
+    --input-width: 267px;
+    --input-height: 51px;
+
+    --font-family-base: 'Inter', sans-serif;
+
+    --container-width: 1680px;
+    --container-padding-x: 120px;
+
+    --transition-duration: 0.2s;
+
+ }
+
+ .sr-only {
+    border: 0 !important;
+    clip: rect(1px, 1px, 1px, 1px) !important;
+    clip-path: inset(50%) !important;
+    height: 1px !important;
+    width: 1px !important;
+    position: absolute !important;
+    overflow: hidden !important;
+    white-space: nowrap !important;
+    padding: 0 !important;
+    margin: -1px !important;
+ }
+
+ .title-2 {
+    font-size: 2rem;
+    font-weight: 900;
+ }
+
+ .emulatorCheckBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 28px;
+    height: 28px;
+  
+    position: relative;
+    background-color: transparent;
+    border: 1px solid var(--checkbox-border-color);
+    border-radius: var(--border-radius-xxs);
+  
+    &::after {
+        content: '';
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background-color: var(--checkbox-border-color);
+    }
+}
+
+.emulatorCheckBox::after{
+    content: '';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: var(--checkbox-border-color);
+}
+
+
+.checkbox:not(:checked) + .emulatorCheckBox::after {
+    opacity: 0;
+}
+
+ body {
+    font-family: var(--font-family-base);
+    color: var(--color-black);
+    /* 16px по дефолту */
+    font-size: 100%;
+    background-color: var(--color-white);
+ }
+
+ .body-wrapper {
+    overflow-x: hidden;
+ }
+
+ .container {
+    max-width: calc(var(--container-width) + var(--container-padding-x) * 2);
+    width: 100%;
+    margin-inline: auto;
+    padding-inline: var(--container-padding-x);
+}
+
+.cross-button, .burger-button {
+    height: 32px;
+    width: 32px;
+    position: relative;
+    border-radius: var(--border-radius-m);
+}
+
+.burger-button {
+    display: none;
+}
+
+.burger-button::after {
+    content: '';
+    width: 70%;
+    height: 2px;
+    background-color: var(--color-black);
+    border-radius: 5px;
+    box-shadow: 0 -8px, 0 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mobile-overlay {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    border: none;
+    padding: 14px 20px;
+}
+
+.mobile-overlay:modal {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.mobile-overlay__close-button-wrapper {
+    display: flex;
+    justify-content: end;
+}
+
+.mobile-overlay__list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 30px;
+    min-height: 80vh;
+}
+
+.cross-button::before, .cross-button::after {
+    content: '';
+    position: absolute;
+    top: 48%;
+    left: 15%;
+    width: 70%;
+    height: 2px;
+    background-color: var(--color-black);
+    border-radius: 5px;
+}
+
+.cross-button::before {
+    rotate: 45deg;
+}
+
+.cross-button::after {
+    rotate: -45deg;
+}
+
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-block: 16px 8px;
+}
+
+.logo__image {
+    height: 70px;
+    width: 97px;
+}
+
+.header__menu-list {
+    display: flex;
+    column-gap: 40px;
+}
+
+.header__last-wrapper {
+    display: flex;
+    column-gap: 8px;
+}
+
+.link {
+    transition-duration: 0.2s;
+}
+
+.dropdown-link {
+    position: relative;
+    padding-right: 15.5px;
+}
+
+.dropdown-link a:hover {
+    color: var(--color-red);
+}
+
+.dropdown-link::after, .dropdown-link::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 9px;
+    height: 1px;
+    background-color: var(--color-black);
+    border-radius: 5px;
+}
+
+.dropdown-link::after {
+    transform: translate(6px)rotate(-45deg);
+}
+
+.dropdown-link::before {
+    transform: rotate(-135deg);
+}
+
+.dropdown-links {
+    display: none;
+    flex-direction: column;
+    row-gap: 12px;
+    padding: 16px 24px;
+    background-color: var(--color-white);
+    border-radius: var(--border-radius-s);
+    box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.12);
+    position: absolute;
+    top: 20px;
+    z-index: 1;
+}
+
+.dropdown-link:hover .dropdown-links,
+.dropdown-links:hover {
+  display: flex;
+}
+
+.dropdown-link:hover::before,
+.dropdown-links:hover .dropdown-link::before {
+    transform: rotate(135deg);
+}
+
+.dropdown-link:hover::after,
+.dropdown-links:hover .dropdown-link::after {
+    transform: translate(6px)rotate(45deg);
+}
+
+.link:hover {
+    color: var(--color-red);
+}
+
+.header__menu-link {
+    padding-block: 10px;
+}
+
+.header__contacts {
+    display: flex;
+    align-items: center;
+}
+
+.social-list {
+    display: flex;
+    column-gap:16px;
+}
+
+.social-list__item {
+    width: 24px;
+    height: 24px;
+}
+
+.social-list__item_width {
+    width: 33px;
+}
+
+.social-list__item-svg {
+    fill: var(--color-gray-light);
+}
+
+.social-list__item-svg:hover {
+    fill: var(--color-gray-dark);
+}
+
+.header__contacts-tel {
+    margin-left: 40px;
+}
+
+.contacts-tel {
+    display: flex;
+    align-items: center;
+}
+
+.contacts-tel__phone {
+    font-size: 1.125rem;
+    font-weight: 700;
+}
+
+.contacts-tel__text {
+    font-size: 0.875rem;
+    color: var(--color-gray);
+}
+
+.section {
+    display: flex;
+}
+
+.section_black {
+    background-color: var(--color-black);
+}
+
+.section_border-radius {
+    border-radius: var(--border-radius-xl);
+}
+
+.hero__section {
+    position: relative;
+    margin-top: 40px;
+    padding: 120px 100px;
+}
+
+.hero__section-bg {
+    position: absolute;
+    right: -120px;
+    bottom: 78px;
+
+}
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    max-width: 603px;
+    width: 100%;
+}
+
+.hero__title {
+    color: var(--color-white-alt);
+    font-weight: 900;
+    font-size: 3.25rem;
+    line-height: 1.2;
+}
+
+.hero__text {
+    margin-top: 32px;
+    font-size: 1.5rem;
+    line-height: 1.5;
+    color: var(--color-gray);
+}
+
+.static-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    height: 70px;
+    padding: 24px;
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--color-white);
+    border-radius: var(--border-radius-m);
+    background-color: var(--color-red);
+    cursor: pointer;
+    transition-duration: 0.2s;
+}
+
+.static-btn:hover {
+    background-color: var(--color-red-alt);
+}
+
+.hero__static-btn {
+    margin-top: 60px;
+}
+
+.hero__section-triangle {
+    position: absolute;
+    bottom: 44px;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 275px 973px 193px 0; 
+    border-color: transparent var(--color-red) transparent transparent;
+}
+
+.japan-cars__section, .china-korean-cars__section  {
+    margin-top: 120px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 32px;
+}
+
+.cars-section-header {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.cars-section-header__text {
+    display: flex;
+    align-items: center;
+}
+
+.cars-section-header__content {
+    display: flex;
+    justify-content: space-between;
+    color: var(--color-gray);
+    font-size: 1.125rem;
+}
+
+.cars-section-header__link {
+    position: relative;
+    padding-right: 40px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    column-gap: 19px;
+    transition-duration: 0.2s;
+}
+
+.cars-section-header__link-svg {
+    width: 24px;
+    height: 24px;
+    fill: var(--color-black);
+}
+
+.cars-section-header__link:hover {
+    color: var(--color-red);
+    * {
+        fill: var(--color-red);
+    }
+}
+
+.japan-cars-list {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.japan-cars-card {
+    height: 477px;
+    width: 411px;
+    padding: 20px;
+    background-color: var(--color-white-dark);
+    border-radius: var(--border-radius-l);
+    display: flex;
+    flex-direction: column;
+    row-gap: 24px;
+}
+
+.japan-cars-card_disable {
+    opacity: 0.5;
+}
+
+.japan-cars-card__img {
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: var(--border-radius-m);
+    background-color: var(--color-white);
+}
+
+.japan-cars-card__info {
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
+}
+
+.japan-cars-card__info-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden; 
+}
+
+.japan-cars-card__info-tags {
+    color: var(--color-gray);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden; 
+}
+
+.japan-cars-card__info-pay {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.japan-cars-card__info-cost {
+    font-weight: 700;
+    font-size: 1.125rem;
+}
+
+.japan-cars-card__info-cost::after {
+    content: ' ₽';
+}
+
+.dynamic-btn {
+    height: 41px;
+    padding: 12px 20px;
+    font-weight: 700;
+    font-size: 0.875rem;
+    color: var(--color-white);
+    border-radius: var(--border-radius-s);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition-duration: 0.2s;
+}
+
+.japan-cars-card__dynamic-btn {
+    background-color: var(--color-black-alt);
+}
+
+.japan-cars-card__dynamic-btn:not(.dynamic-btn_disable):hover {
+    background-color: var(--color-red);
+}
+
+.dynamic-btn_disable {
+    cursor: auto;
+}
+
+.japan-cars__static-btn {
+    align-self: center;
+}
+
+.china-korean-cars__list {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.china-korean-cars__list-item {
+    width: 49%;
+}
+
+.china-korean-cars-card {
+    height: 297px;
+    width: 100%;
+    padding: 40px;
+    background-color: var(--color-gray-alt);
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
+    border-radius: var(--border-radius-l)
+}
+
+.china-korean-cars-card_korean {
+    background: 
+    linear-gradient(90deg, rgba(0, 0, 0, 0.83) 0%, rgba(0, 0, 0, 0.00) 100%),
+    url('../images/cars/car-bg-2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.china-korean-cars-card_china{
+    background: 
+    linear-gradient(90deg, rgba(0, 0, 0, 0.83) 0%, rgba(0, 0, 0, 0.00) 100%),
+    url('../images/cars/car-bg-1.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.china-korean-cars-card__info {
+    width: 308px;
+    color: var(--color-white);
+}
+
+.china-korean-cars-card__info-title {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.china-korean-cars-card__info-text {
+    margin-top: 12px;
+    line-height: 1.5;
+}
+
+.china-korean-cars-card__dynamic-btn {
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    width: fit-content;
+    margin-top: auto;
+}
+
+.china-korean-cars-card__dynamic-btn:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.logo__image-white {
+    filter: brightness(0) invert(1);
+}
+
+.logo__image-big {
+    height: 164px;
+    width: 227px;
+}
+
+.logo__image-m {
+    height: 80px;
+    width: 110px;
+}
+
+.about__section {
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    margin-top: 120px;
+}
+
+.about__main-block {
+    position: relative;
+    padding: 60px 120px 132px;
+    width: 100%;
+    border-radius: var(--border-radius-xl);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--color-white);
+    column-gap: 30px;
+}
+
+.about__main-block::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/cars-bg-quality.png');
+    background: 
+      linear-gradient(270deg, rgba(25, 25, 25, 0.00) 0.05%, #191919 77.08%),
+      url('../images/cars-bg-quality.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: brightness(40%);
+    z-index: -1;
+    border-radius: var(--border-radius-xl);
+}
+
+.about__content {
+    width: 100%;
+}
+
+.about__text {
+    margin-top: 16px;
+    font-size: 1.125rem;
+    line-height: 1.5;
+}
+
+.about__quality {
+    max-width: 1440px;
+    padding: 24px 20px;
+    box-shadow: 0px 4px 40px 0px rgba(0, 0, 0, 0.12);
+    background-color: var(--color-white);
+    border-radius: var(--border-radius-l);
+    margin-top: -104px;
+    z-index: 2;
+}
+
+.about__quality-list {
+    display: flex;
+    column-gap: 20px;
+}
+
+.about__quality-item {
+    width: fit-content;
+    text-align: center;
+    font-size: 0.875rem;
+}
+
+.about__quality-svg {
+    width: 40px;
+    height: 40px;
+    fill: var(--color-gray-dark);
+}
+
+.about__static-btn {
+    margin-top: 40px;
+}
+
+.feedback__section {
+    margin-top: 60px;
+}
+
+.feedback {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.feedback__info {
+    display: flex;
+    align-items: center;
+    column-gap: 12px;
+}
+
+.feedback__count {
+    color: var(--color-gray);
+    font-size: 2rem;
+}
+
+.feedback__rating {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+}
+
+.feedback__mark {
+    font-size: 2rem;
+    font-weight: 900;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    column-gap: 4px;
+}
+
+.rating__star {
+    display: flex;
+    align-self: flex-start;
+    height: 20px;
+    width: 20px;
+    fill: var(--color-yellow);
+}
+
+.rating__star_inactive {
+    fill: var(--color-empty-star);
+}
+
+.feedback__slider {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 12px;
+    margin: 0 auto;
+}
+
+.feedback__slider-wrapper {
+    width: 100vw;
+    overflow: hidden;
+    transform: translate(calc(-1 * var(--container-padding-x)));
+    margin-top: 24px;
+    position: relative;
+}
+
+.feedback-card {
+    max-width: 560px;
+    width: 552px;
+    height: 187px;
+    background-color: var(--color-white-dark);
+    border-radius: var(--border-radius-l);
+    padding: 16px;
+    display: flex;
+    column-gap: 16px;
+    transform: translate(-160px);
+}
+
+.feedback-card__avatar {
+    height: 64px;
+    width: 64px;
+    border-radius: 50%;
+}
+
+.feedback-card__info {
+    display: flex;
+    flex-direction: column;
+}
+
+.feedback-card__name {
+    font-weight: 700;
+}
+
+.feedback-card__rating {
+    margin-top: 4px;
+}
+
+.feedback-card__comment {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    margin-top: 10px;
+}
+
+.feedback-card__date {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--color-gray);
+    margin-top: 8px;
+}
+
+.feedback__slider-btn {
+    position: absolute;
+    height: 48px;
+    width: 48px;
+    border-radius: var(--border-radius-m);
+    background-color: var(--color-white);
+    top: 50%;
+    z-index: 1;
+    transform: translate(0, -50%);
+    box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+}
+
+.feedback__slider-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    width: 12px; 
+    height: 12px;
+    border-left: 2px solid var(--color-gray-dark);
+    border-bottom: 2px solid var(--color-gray-dark);
+    transform: translate(50%, -50%) rotate(45deg); 
+}
+
+.feedback__slider-btn:hover::after {
+    border-left-color: var(--color-red);
+    border-bottom-color: var(--color-red);
+}
+
+.feedback__slider-btn_prev {
+    left: var(--container-padding-x);
+}
+
+.feedback__slider-btn_next {
+    right: var(--container-padding-x);
+    transform: translate(0, -50%) rotate(180deg); 
+}
+
+.contacts__section {
+    margin-top: 120px;
+    padding: 60px 60px 0 60px;
+    display: flex;
+    justify-content: space-between;
+    column-gap: 48px;
+    color: var(--color-white);
+}
+
+.contacts-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 60px;
+}
+
+.contacts__subTitle {
+    color: var(--color-gray);
+    line-height: 1.5;
+}
+
+.contacts-info__header {
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+}
+
+.contacts-info__block {
+    display: flex;
+    column-gap: 24px;
+}
+
+.contacts-info__block-connect {
+    display: flex;
+    flex-direction: column;
+    row-gap: 28px;
+}
+
+.contacts-info__block-wrapper {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+}
+
+.contacts-info__block-title {
+    color: var(--color-gray);
+    font-size: 0.875rem;
+}
+
+.contacts-info__block-links {
+    display: flex;
+    flex-direction: column;
+    row-gap: 32px;
+}
+
+.contacts-info__block-svg {
+    height: 40px;
+    width: 40px;
+}
+
+.contacts-info__block-link {
+    display: flex;
+    align-items: center;
+    column-gap: 12px;
+}
+
+.contacts-form-wrapper {
+    display: flex;
+    flex-direction: column;
+    row-gap: 24px;
+    padding: 40px;
+    background-color: var(--color-white);
+    border-radius: var(--border-radius-l) var(--border-radius-l) 0px 0px;
+    width: 630px;
+}
+
+.contacts-form__title {
+    color: var(--color-black);
+    font-size: 1.5rem;
+    font-weight: 900;
+}
+
+.contacts-form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 24px;
+}
+
+.contacts-form__user-info {
+    display: flex;
+    column-gap: 16px;
+}
+
+.contacts-form__input-block {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+}
+
+.contacts-form__input {
+    height: var(--input-height);
+    width: var(--input-width);
+}
+
+.contacts-form__input, .contacts-form__textarea {
+    padding: 16px;
+    background-color: var(--color-white-dark);
+    border-radius: var(--border-radius-xs);
+}
+
+.contacts-form__input:hover, .contacts-form__textarea:hover {
+    opacity: 0.7;
+}
+
+.contacts-form__label {
+    color: var(--color-black);
+    font-size: 0.875rem;
+}
+
+.contacts-form__label_grey {
+    color: var(--color-gray);
+}
+
+.contacts-form__question {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+}
+
+.contacts-form__textarea {
+    height: 101px;
+    width: 100%;
+}
+
+.contacts-form__submit {
+    display: flex;
+    column-gap: 16px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.contacts-form__btn {
+    height: 70px;
+    width: 235px;
+    font-weight: 700;
+    font-size: 1.125rem;
+    background-color: var(--color-white-dark);
+    border-radius: var(--border-radius-m);
+    flex-shrink: 0;
+    transition-duration: 0.2s;
+}
+
+.contacts-form__btn:hover {
+    background-color: var(--color-red);
+    color: var(--color-white);
+}
+
+.contacts-form__agree-rules {
+    display: flex;
+    align-items: center;
+    column-gap: 12px;
+    color: var(--color-black);
+}
+
+.contacts-form__agree-rules_blue {
+    cursor: pointer;
+    color: var(--color-blue);
+}
+
+.footer {
+    padding-top: 24px;
+    background-color: var(--color-black);
+    display: flex;
+    flex-direction: column;
+    margin-top: 60px;
+    color: var(--color-white);
+}
+
+.footer__info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 40px;
+}
+
+.footer__main-links {
+    display: flex;
+    align-items: center;
+    column-gap: 60px;
+}
+
+.footer__main-links-container {
+    font-size: 0.875rem;
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
+}
+
+.footer__sub-links {
+    display: flex;
+    align-items: top;
+    column-gap: 60px;
+}
+
+.link-block__title {
+    font-weight: 700;
+}
+
+.link-block__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.link-block__list_japan, .link-block__list_china  {
+    max-width: 300px;
+}
+
+.link-block__list_korea {
+    max-width: 200px;
+}
+
+.link-block__item {
+    font-size: 0.875rem;
+    color: var(--color-gray);
+}
+
+.footer__info:not(:last-child) {
+    border-bottom: 1px solid var(--color-gray-border);
+}
+
+.footer__contacts {
+    padding-block: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer__contacts-privacy {
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
+}
+
+.footer__contacts-text, .footer__contacts-copyright {
+    font-size: 0.875rem;
+}
+
+.footer__contacts-copyright {
+    color: var(--color-gray);
+}
+
+.footer__contacts-social {
+    display: flex;
+    align-items: center;
+    column-gap: 40px;
+}
+
+@media (max-width: 1919px) {
+    :root {
+        --container-padding-x: 50px;
+    }
+
+    html {
+        font-size: 85%;
+    }
+
+    .hero {
+        max-width: 500px;
+    }
+
+    .hero__title {
+        width: 570px;
+    }
+
+    .hero__section-bg {
+        width: 810px;
+        right: -90px;
+    }
+
+    .hero__section-triangle {
+        bottom: 44px;
+        border-width: 185px 615px 140px 0;
+
+    }
+
+    .hero__section {
+        margin-top: 30px;
+        padding: 60px 50px;
+    }
+    
+    .japan-cars__section, .china-korean-cars__section, .about__section, .contacts__section {
+        margin-top: 90px;
+    }
+
+    .japan-cars-card {
+        width: 350px;
+        height: 420px;
+    }
+    
+    .static-btn {
+        width: 250px;
+        height: 60px;
+    }
+
+    .china-korean-cars__list {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .contacts__section {
+        padding: 60px 30px 0 30px;
+    }
+    
+    .contacts-form__btn {
+        height: 50px;
+        width: 200px;
+    }
+
+    .footer__sub-links {
+        column-gap: 30px;
+    }
+
+    .footer__main-links {
+        column-gap: 30px;
+    }
+
+    .logo__image-big {
+        height: 140px;
+        width: 200px;
+    }
+
+    .about__quality {
+        max-width: 995px;
+    }
+
+    .about__main-block {
+        padding: 40px 90px 132px;
+    }
+    
+}
+
+@media (max-width: 1365px) {
+    :root {
+        --container-padding-x: 30px;
+        --input-width: 210px;
+        --input-height: 40px;
+    }
+
+    html {
+        font-size: 75%;
+    }
+
+    .hero {
+        max-width: 440px;
+    }
+
+    .hero__section-bg {
+        width: 640px;
+        right: -70px;
+    }
+
+    .hero__title {
+        width: 570px;
+    }
+
+    .hero__section-triangle {
+        bottom: 54px;
+        border-width: 150px 490px 110px 0;
+    }
+
+    .hero__section {
+        margin-top: 25px;
+        padding: 45px 35px;
+    }
+    
+    .japan-cars__section, .china-korean-cars__section, .about__section, .contacts__section {
+        margin-top: 60px;
+    }
+
+    .china-korean-cars__list-item {
+        width: 100%;
+    }
+
+    .china-korean-cars__list {
+        font-size: 140%;
+    }
+
+    .china-korean-cars-card__info-title {
+        font-size: 2.5rem;
+    }
+
+    .japan-cars-card {
+        width: 312px;
+        height: 385px;
+    }
+    
+    .static-btn {
+        width: 230px;
+        height: 50px;
+    }
+    
+    .logo__image-big {
+        height: 140px;
+        width: 200px;
+    }
+    
+    .contacts-form__btn {
+        height: 50px;
+        width: 200px;
+    }
+    
+    .about__quality {
+        max-width: 850px;
+    }
+
+    .about__main-block {
+        padding: 30px 60px 132px;
+    }
+    
+    .feedback-card {
+        max-width: 440px;
+        width: 440px;
+        height: 150px;
+    }
+
+    .contacts-form-wrapper {
+        padding: 20px;
+    }
+    
+    .contacts-form__btn  {
+        height: 40px;
+        width: 170px;
+    }
+
+    .contacts-info__block-svg {
+        height: 30px;
+        width: 30px;
+    }
+
+    .social-list__item {
+        height: 20px;
+        width: 20px;
+    }
+
+    .social-list__item_width  {
+        width: 27px;
+    }
+
+    .footer__sub-links {
+        column-gap: 15px;
+    }
+
+    .footer__main-links {
+        column-gap: 15px;
+    }
+
+    .logo__image-m {
+        height: 50px;
+        width: 75px;
+    }
+
+    .link-block__list_japan, .link-block__list_china {
+        max-width: 200px;
+    }
+    
+    .link-block__list_korea {
+        max-width: 150px;
+    }
+}
+
+@media (max-width: 1023px) { 
+
+    :root {
+        --container-padding-x: 15px;
+    }
+
+    html {
+        font-size: 75%;
+    }
+
+    .header__menu {
+        display: none;
+    }
+
+    .burger-button {
+        display: block;
+    }
+
+    .header__contacts-tel {
+        margin-left: 20px;
+    }
+
+    .hero {
+        max-width: 100%;
+    }
+
+    .hero__text {
+        max-width: 340px;
+    }
+
+    .hero__section-bg {
+        width: 500px;
+        right: -55px;
+        bottom: 50px;
+    }
+
+    .hero__section-triangle {
+        bottom: 34px;
+        border-width: 115px 390px 85px 0;
+    }
+
+    .japan-cars__section, .china-korean-cars__section, .about__section, .contacts__section {
+        margin-top: 40px;
+    }
+
+    .japan-cars-card {
+        width: 312px;
+        height: 375px;
+    }
+
+    .dynamic-btn {
+        height: 35px;
+    }
+
+    .china-korean-cars__list {
+        font-size: 120%;
+    }
+
+    .logo__image-big {
+        height: 100px;
+        width: 130px;
+    }
+
+    .about__main-block {
+        padding: 20px 30px 132px;
+    }
+
+    .about__quality {
+        max-width: 645px;
+    }
+
+    .about__quality-list {
+        flex-wrap: wrap;
+        justify-content: center;
+        row-gap: 25px;
+    }
+
+    .about__quality-item {
+        width: 120px;
+    }
+
+    .feedback-card {
+        width: 360px;
+        height: 160px;
+    }
+
+    .contacts__section {
+        flex-direction: column;
+    }
+
+    .contacts-form-wrapper {
+        width: 100%;
+    }
+    
+    .contacts-info {
+        padding-bottom: 20px;
+    }
+
+    .contacts-info__header {
+        padding-bottom: 20px;
+    }
+
+    .contacts-form__input-block {
+        width: 49%;
+    }
+
+    .contacts-form__input {
+        width: 100%;
+    }
+
+    .contacts-info__block {
+        flex-direction: column;
+        row-gap: 25px;
+    }
+
+    .contacts-info__block-connect, .contacts-info__block-links {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .contacts-info__block-wrapper {
+        row-gap: 5px;
+    }
+
+    .footer__info {
+        flex-direction: column;
+        gap: 30px;
+        padding-bottom: 30px;
+    }
+
+    .footer__main-links {
+        align-self: flex-start;
+    }
+
+    .footer__sub-links {
+        width: 100%;
+    }
+
+    .footer__link-block {
+        width: 33%;
+    }
+}
+
+@media (max-width: 767px) {
+    :root {
+        --container-padding-x: 10px;
+    }
+
+    html {
+        font-size: 60%;
+    }
+
+    .static-btn {
+        width: 200px;
+        height: 40px;
+    }
+
+    .logo__image {
+        height: 50px;
+        width: 70px;
+    }
+
+    .hero__section {
+        margin-top: 25px;
+        padding: 25px 15px;
+    }
+
+    .hero__title {
+        font-size: 2.5rem;
+        width: 100%;
+    }
+
+    .hero__text {
+        margin-top: 12px;
+    }
+
+    .hero__static-btn {
+        margin-top: 115px;
+    }
+
+    .hero__section-bg {
+        width: 400px;
+        right: -35px;
+        bottom: 40px;
+    }
+
+    .hero__section-triangle {
+        bottom: 34px;
+        border-width: 95px 310px 55px 0;
+    }
+    
+    .cars-section-header__link {
+        column-gap: 5px;
+    }
+
+    .japan-cars-card {
+        width: 258px;
+        height: 328px;
+    }
+
+    .china-korean-cars-card {
+        height: 240px;
+    }
+
+    .about__quality-item {
+        width: 110px;
+    }
+
+    .about__static-btn {
+        margin-top: 20px;
+    }
+
+    .feedback__section {
+        margin-top: 30px;
+    }
+
+    .feedback-card__name {
+        font-size: 1.2rem;
+    }
+
+    .feedback-card__comment {
+        font-size: 1rem;
+        line-height: 1.2;
+    }
+
+    .feedback-card__avatar {
+        height: 36px;
+        width: 36px;
+    }
+
+    .feedback-card {
+        width: 300px;
+        height: 140px;
+    }
+
+    .contacts__section {
+        padding-top: 35px;
+    }
+
+    .contacts-info__header {
+        row-gap: 8px;
+    }
+
+    .contacts-info__block-connect, .contacts-info__block-links {
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 575px) {
+    :root {
+        --container-padding-x: 5px;
+    }
+
+    html {
+        font-size: 70%;
+    }
+
+    .logo__image {
+        height: 40px;
+        width: 60px;
+    }
+
+    .static-btn {
+        width: 175px;
+        height: 30px;
+    }
+    
+    .title-2 {
+        font-size: 1.5rem;
+    }
+
+    .social-list {
+        column-gap: 8px;
+    }
+    
+    .hero__title {
+        font-size: 1.75rem;
+    }
+
+    .hero__text {
+        font-size: 1.25rem;
+    }
+
+    .hero__section-bg {
+        width: 285px;
+        right: -25px;
+        bottom: 70px;
+    }
+
+    .hero__section-triangle {
+        bottom: 55px;
+        border-width: 70px 215px 50px 0;
+    }
+
+    .cars-section-header__content {
+        font-size: 1rem;
+    }
+
+    .cars-section-header__link-svg {
+        display: none;
+    }
+
+    .cars-section-header__content {
+        flex-direction: column;
+    }
+
+    .cars-section-header__content {
+        margin-top: 5px;
+    }
+
+    .japan-cars-card__info-title {
+        font-size: 1.25rem;
+    }
+
+    .japan-cars-card {
+        width: 253px;
+        height: 314px;
+        row-gap: 12px;
+    }
+
+    .china-korean-cars-card {
+        height: 225px;
+    }
+
+    .china-korean-cars-card__info-title {
+        font-size: 2rem;
+    }
+
+    .china-korean-cars-card__info {
+        width: 100%;
+    }
+
+    .about__main-block  .logo__image-big {
+        display: none;
+    }
+
+    .about__quality {
+        padding: 10px 5px;
+    }
+
+    .about__quality-list {
+        row-gap: 10px;
+    }
+
+    .about__quality-item {
+        width: 130px;
+    }
+
+    .feedback-card {
+        width: 205px;
+        height: 225px;
+        flex-direction: column;
+    }
+
+    .contacts__section {
+        padding-inline: 0;
+        border-radius: var(--border-radius-m);
+    }
+
+    .contacts-info {
+        padding-inline: 20px;
+    }
+
+    .contacts-info__block-connect, .contacts-info__block-links {
+        flex-wrap: wrap;
+    }
+
+    .contacts-form-wrapper {
+        row-gap: 15px;
+    }
+
+    .contacts-form__user-info, .contacts-form__submit {
+        flex-direction: column;
+        row-gap: 15px;
+    }
+
+    .contacts-form__input-block {
+        width: 100%;
+    }
+
+    .footer__contacts-social {
+        column-gap: 10px;
+    }
+
+}
